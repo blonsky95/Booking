@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Booking</string>
+    <string name="intro">Booking</string>
+
+    <string name="mes">Month</string>
+    <string name="dia">Day</string>
+    <string name="accion">See timetable</string>
+    <string name="reservas">My bookings</string>
+
+    <string name="username">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+
+    <string name="slot1">10:00 to 12:00</string>
+    <string name="slot2">12:00 to 14:00</string>
+    <string name="slot3">16:00 to 18:00</string>
+    <string name="slot4">18:00 to 20:00</string>
+    <string name="hint1">Type your name</string>
+    <string name="nadie"><i>Empty</i></string>
+
+    <string name="no_scores">No slots have been booked</string>
+
+    <string name="month1">January</string>
+    <string name="month2">February</string>
+    <string name="month3">March</string>
+    <string name="month4">April</string>
+    <string name="month5">May</string>
+    <string name="month6">June</string>
+    <string name="month7">July</string>
+    <string name="month8">August</string>
+    <string name="month9">September</string>
+    <string name="month10">October</string>
+    <string name="month11">November</string>
+    <string name="month12">December</string>
+
+    <string name="delete_req">Delete booking?</string>
+    <string name="del_confirm">Yes</string>
+    <string name="del_deny">No</string>
+    <string name="booking_deleted">Booking deleted</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</resources>
