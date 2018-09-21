@@ -1,9 +1,7 @@
 package com.example.pablotrescoli.fisiobooking;
 
-import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -47,9 +45,9 @@ public class DaySchedule extends AppCompatActivity {
     String slot1strA, slot2strA, slot3strA, slot4strA;
 
 
-    // IP de mi Url
+    // IP of my Url
     String IP = "http://pabspotatoe.000webhostapp.com";
-    // Rutas de los Web Services
+    // Web service paths
     String GET = IP + "/Obtain_days.php";
     String GET_BY_ID = IP + "/Select_day_id.php";
     String UPDATE = IP + "/Update_day.php";
@@ -94,7 +92,6 @@ public class DaySchedule extends AppCompatActivity {
         slot4tick = findViewById(R.id.slot4tick);
         slot4tick.setOnClickListener(new updateSlotX(4));
 
-
     }
 
     BookingDbHelper mDbHelper = new BookingDbHelper(this);
@@ -116,7 +113,6 @@ public class DaySchedule extends AppCompatActivity {
             String oldnameZ = slot3name.getText().toString();
             String oldnameW = slot4name.getText().toString();
 
-
             String column = "";
             threadConnect = new ObtainWebService();
 
@@ -135,7 +131,6 @@ public class DaySchedule extends AppCompatActivity {
             values.put(BookingTable.NewBooking.COLUMN_ID, score_num + 1);
             values.put(BookingTable.NewBooking.COLUMN_SLOT, slotX);
             values.put(BookingTable.NewBooking.COLUMN_DAYID, day_id);
-
 
             if (slotX == 1) {
                 String newnameX = slot1et.getText().toString();
@@ -167,12 +162,9 @@ public class DaySchedule extends AppCompatActivity {
                 column = Integer.toString(slotX);
                 threadConnect.execute(UPDATE, "4", day_id_str, oldnameX, oldnameY, oldnameZ, newnameW);
 
-
             }
 
             db.insert(BookingTable.NewBooking.TABLE_NAME_BOOKINGS, null, values);
-
-
         }
     }
 
@@ -181,13 +173,9 @@ public class DaySchedule extends AppCompatActivity {
         threadConnect = new ObtainWebService();
         String chainCall = GET_BY_ID + "?id_day=" + day_id;
         Log.e("webservicecall", chainCall);
-
         threadConnect.execute(chainCall, "2");
 
     }
-
-    String conf = "confu";
-
 
     public class ObtainWebService extends AsyncTask<String, Void, String> {
 
@@ -199,7 +187,6 @@ public class DaySchedule extends AppCompatActivity {
             String chain = params[0];
             URL url = null;
             String result = "";
-
 
             if (params[1].equals("2")) {
                 try {
@@ -245,13 +232,11 @@ public class DaySchedule extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-              //  Log.e("Async Task result: ", result);
 
                 return result;
 
             } else if (params[1].matches("4")) {
                 try {
-                  //  Log.e("UPDATE", "called");
                     HttpURLConnection urlConn;
                     DataOutputStream printout;
                     DataInputStream input;
@@ -276,14 +261,12 @@ public class DaySchedule extends AppCompatActivity {
                     bufferedWriter.write(jsonObject.toString());
                     bufferedWriter.flush();
                     bufferedWriter.close();
-                   // Log.e("UPLOAD", "SUCCESS");
                     int response = urlConn.getResponseCode();
 
                     StringBuilder resulting = new StringBuilder();
 
                     if (response == HttpURLConnection.HTTP_OK) {
                         String line;
-                      //  Log.e("UPDATE RESP CONNECTION", "SUCCESS");
 
                         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConn.getInputStream()));
                         while ((line = bufferedReader.readLine()) != null) {
@@ -298,7 +281,6 @@ public class DaySchedule extends AppCompatActivity {
                             result = "Unsuccesfull";
                         }
                         result = "2" + result;
-                      //  Log.e("result of update", result);
 
                     }
 
@@ -322,7 +304,6 @@ public class DaySchedule extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
-           // Log.e("Post Execute String: ", s);
             if (s.length() > 0) {
                 if (dialog.isShowing()) {
                     dialog.dismiss();
@@ -335,8 +316,6 @@ public class DaySchedule extends AppCompatActivity {
                 }
                 if (type.matches("2")) {
                     displayToastAndUpdateTable(resulting);
-                    //Log.e("type 2 so toast ", "YES");
-
                 }
             }
             else {
@@ -404,16 +383,12 @@ public class DaySchedule extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-
         if (item.getItemId() == R.id.home_button) {
             Intent backHome = new Intent(DaySchedule.this, MainActivity.class);
-
             startActivity(backHome);
         }
 
-
         return super.onOptionsItemSelected(item);
-
 
     }
 }

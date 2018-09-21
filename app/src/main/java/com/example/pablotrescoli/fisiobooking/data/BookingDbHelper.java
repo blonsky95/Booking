@@ -24,9 +24,7 @@ public class BookingDbHelper extends SQLiteOpenHelper {
                 + BookingTable.NewBooking.COLUMN_SLOT + " TEXT NOT NULL, "
                 + BookingTable.NewBooking.COLUMN_DAYID + " TEXT NOT NULL);";
 
-
         sqLiteDatabase.execSQL(SQL_CREATE_BOOKING_TABLE);
-
 
     }
 

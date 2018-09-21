@@ -6,18 +6,15 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView verHorario, misReservas;
+    TextView verHorario;
     int spinner1int, spinner2int;
     Spinner spinner1, spinner2;
 
@@ -65,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
                 int day_id_int = dayIdentifier(spinner1int, spinner2int);
 
                 String day_id_str = Integer.toString(day_id_int);
-               // Log.e("LOGGGGY", day_id_str);
 
                 intent.putExtra("day_id", day_id_str);
                 startActivity(intent);

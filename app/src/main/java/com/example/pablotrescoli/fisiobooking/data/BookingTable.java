@@ -27,8 +27,6 @@ public class BookingTable {
 
         public final static String TABLE_NAME_BOOKINGS = "local_bookings";
 
-
-
         public final static String COLUMN_ID = "_id";
 
         public final static String COLUMN_NAME = "name";

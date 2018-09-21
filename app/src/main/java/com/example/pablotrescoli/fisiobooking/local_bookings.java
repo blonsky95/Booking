@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,10 +23,7 @@ import com.example.pablotrescoli.fisiobooking.data.BookingTable;
 
 public class local_bookings extends AppCompatActivity {
 
-    String LOG_TAG = "LOG TAG: ";
-
     public static int score_max;
-
 
     private static String bookingNameStr = "";
 
@@ -63,7 +59,6 @@ public class local_bookings extends AppCompatActivity {
             score_max = cursor.getCount();
         {
             int numberScores = cursor.getCount();
-        //    Log.e("LOG TAG LOAD SCREEN: ", Integer.toString(numberScores));
 
             LinearLayout parentLinearLayout = (LinearLayout) findViewById(R.id.booking_list);
 
@@ -86,10 +81,9 @@ public class local_bookings extends AppCompatActivity {
 
                 int bookingDayId = cursor.getColumnIndex(BookingTable.NewBooking.COLUMN_DAYID);
                 int DayIdStr = Integer.parseInt(cursor.getString(bookingDayId));
-           //     Log.e(LOG_TAG, "dayidstr: "+DayIdStr);
                 String dayNumStr="";
                 String monthStr="";
-                // convertir ID a dia y mes
+
                 if (DayIdStr<=31) {
                     dayNumStr=String.valueOf(DayIdStr);
                     monthStr=getResources().getString(R.string.month1)+" ";
@@ -161,8 +155,6 @@ public class local_bookings extends AppCompatActivity {
                 int selected_booking_id=cursor.getPosition()+1;
                 ImageView delete_btn = newScoreInflated.findViewById(R.id.delete_btn);
                 delete_btn.setOnClickListener(new deleteBooking(selected_booking_id));
-
-
             }
 
         }
@@ -190,7 +182,6 @@ public class local_bookings extends AppCompatActivity {
                     BookingDbHelper mDbHelper = new BookingDbHelper(local_bookings.this);
                     SQLiteDatabase db = mDbHelper.getWritableDatabase();
                     String selection = BookingTable.NewBooking.COLUMN_ID + "=" + myLovelyVariable;
-                 //   Log.e(LOG_TAG, "DELETED ID: " + selection);
 
                     db.delete(BookingTable.NewBooking.TABLE_NAME_BOOKINGS, selection, null);
                     resetIds(myLovelyVariable);
@@ -220,7 +211,6 @@ public class local_bookings extends AppCompatActivity {
         if (deletedID < score_max) {
             int i = score_max - deletedID;
             int x = 1;
-            // Log.e(LOG_TAG, "value deleted: " + deletedID);
             BookingDbHelper mDbHelper = new BookingDbHelper(local_bookings.this);
             SQLiteDatabase db = mDbHelper.getWritableDatabase();
             while (x <= i) {
@@ -230,7 +220,6 @@ public class local_bookings extends AppCompatActivity {
 
                 int oldID = deletedID + x;
                 String selection = BookingTable.NewBooking.COLUMN_ID + "=" + oldID;
-             //   Log.e(LOG_TAG, "old id " + oldID + " and new id is " + newID);
                 db.update(BookingTable.NewBooking.TABLE_NAME_BOOKINGS, values, selection, null);
                 x++;
 
